@@ -7,8 +7,11 @@ drep is a basic clone of `grep` (or more accurately, `rgrep`) written in Deno wi
 To use drep, you can run the following commands:
 
 `drep "some string" file_or_folder`: Search for a string in a file or folder.
+
 `cat some_file.txt | drep "some string"`: Search for a string in stdin.
+
 `drep "some string" .`: Search for a string in the current directory.
+
 You can also pass a valid JavaScript RegExp instead of a search string.
 
 Flags
