@@ -1,4 +1,9 @@
-import { createHandleFile, Flags, getFilePaths, searchStdin } from "./mod.ts";
+import {
+  createHandleFile,
+  getFilePaths,
+  parseArgs,
+  searchStdin,
+} from "./mod.ts";
 
 const USAGE_INSTRUCTIONS = `Usage: <search> <location> | <search> (via stdin)
 
@@ -6,17 +11,6 @@ Flags:
 -n: Include line numbers in the search results.
 -i: Perform a case-insensitive search.
 `;
-
-function parseArgs(args: string[]) {
-  const positionalArgs: string[] = [];
-  const flags: Flags = { n: false, i: false };
-  args.forEach((arg) => {
-    if (arg === "-n") flags.n = true;
-    else if (arg === "-i") flags.i = true;
-    else positionalArgs.push(arg);
-  });
-  return { positionalArgs, flags };
-}
 
 async function main() {
   const { positionalArgs, flags } = parseArgs(Deno.args);

@@ -1,4 +1,42 @@
 import { assertEquals } from "https://deno.land/std@0.182.0/testing/asserts.ts";
+import { getFilePaths, parseArgs, searchFile } from "./mod.ts";
+
+Deno.test("parse args", () => {
+  assertEquals(parseArgs(["search_string", "location"]), {
+    positionalArgs: ["search_string", "location"],
+    flags: { i: false, n: false },
+  });
+
+  assertEquals(parseArgs(["-i", "search_string", "location"]), {
+    positionalArgs: ["search_string", "location"],
+    flags: { i: true, n: false },
+  });
+
+  assertEquals(parseArgs(["-n", "search_string", "location"]), {
+    positionalArgs: ["search_string", "location"],
+    flags: { i: false, n: true },
+  });
+});
+
+Deno.test("get file paths", async () => {
+  const paths: string[] = [];
+  const mockHandleFile = (s: string) => paths.push(s);
+  await getFilePaths("fixtures", mockHandleFile);
+  assertEquals(paths, ["fixtures/some_file.txt"]);
+});
+
+Deno.test("search file", async () => {
+  assertEquals(
+    await searchFile("fixtures/some_file.txt", new RegExp("unique")),
+    {
+      location: "fixtures/some_file.txt",
+      lines: [{
+        data: "a unique string",
+        no: 2,
+      }],
+    },
+  );
+});
 
 Deno.test("compile and search a file", async () => {
   // Compile

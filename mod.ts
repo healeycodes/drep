@@ -21,6 +21,17 @@ type Line = {
   no: number;
 };
 
+export function parseArgs(args: string[]) {
+  const positionalArgs: string[] = [];
+  const flags: Flags = { n: false, i: false };
+  args.forEach((arg) => {
+    if (arg === "-n") flags.n = true;
+    else if (arg === "-i") flags.i = true;
+    else positionalArgs.push(arg);
+  });
+  return { positionalArgs, flags };
+}
+
 export function createHandleFile(
   regexp: RegExp,
   flags: Flags,
