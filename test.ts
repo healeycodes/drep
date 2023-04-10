@@ -6,7 +6,6 @@ Deno.test("compile and search a file", async () => {
     cmd: [
       "bash",
       "build.sh",
-      "",
     ],
     stdout: "piped",
     stderr: "piped",
