@@ -12,6 +12,8 @@ To use drep, you can run the following commands:
 
 `drep "some string" .`: Search for a string in the current directory.
 
+Searches are recursive by default.
+
 You can also pass a valid JavaScript RegExp instead of a search string.
 
 ### Flags
