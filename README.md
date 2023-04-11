@@ -15,7 +15,9 @@ To use drep, you can run the following commands:
 You can also pass a valid JavaScript RegExp instead of a search string.
 
 Flags
+
 `-n`: Include line numbers in the search results.
+
 `-i`: Perform a case-insensitive search.
 
 ## Building and Testing
