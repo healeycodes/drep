@@ -14,7 +14,7 @@ To use drep, you can run the following commands:
 
 You can also pass a valid JavaScript RegExp instead of a search string.
 
-Flags
+### Flags
 
 `-n`: Include line numbers in the search results.
 
